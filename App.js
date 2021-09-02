@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Task from './components/Task';
 
 export default function App() {
@@ -23,18 +23,32 @@ export default function App() {
     <View style={styles.container}>
       <View style={styles.tasksWrapper}>
         <Text style={styles.sectionTitle}>Today's tasks</Text>
-        <StatusBar style="auto" />
+        <StatusBar style="dark-content" visibility="visible"/>
+        <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.items}>
+          {/* <Task name={"Hi"}/>
+          <Task name={"Hi"}/>
+          <Task name={"Hi"}/>
+          <Task name={"Hi"}/>
+          <Task name={"Hi"}/>
+          <Task name={"Hi"}/>
+          <Task name={"Hi"}/>
+          <Task name={"Hi"}/>
+          <Task name={"Hi"}/>
+          <Task name={"Hi"}/> */}
           {
             taskItems.map((item, index) => {
               return (
-                <TouchableOpacity key={index} onPress={() => handleCompleteTask(index)}>
+                <TouchableOpacity key={index} onPress={() => {
+                  handleCompleteTask(index)
+                }}>
                   <Task name={item}/>
                 </TouchableOpacity>
               )
             })
           }
-      </View>
+        </View>
+        </ScrollView>
       </View>
 
       <KeyboardAvoidingView
