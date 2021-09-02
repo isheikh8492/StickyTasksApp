@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { Keyboard, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, Keyboard, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Task from './components/Task';
 
 export default function App() {
@@ -22,7 +22,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}>Today's tasks</Text>
+        <Text style={styles.sectionTitle}>Sticky Tasks</Text>
         <StatusBar style="dark-content" visibility="visible"/>
         <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.items}>
@@ -42,7 +42,9 @@ export default function App() {
                 <TouchableOpacity key={index} onPress={() => {
                   handleCompleteTask(index)
                 }}>
+                  
                   <Task name={item}/>
+                  
                 </TouchableOpacity>
               )
             })
@@ -70,15 +72,16 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E8EABD',
+    backgroundColor: 'white',
   },
   tasksWrapper: {
     paddingTop: 80,
     paddingHorizontal: 20
   },
   sectionTitle: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
+    textAlign: 'center'
   },
   items: {
     marginTop: 30
@@ -115,5 +118,6 @@ addWrapper: {
 },
 addText: {
 
-}
+},
+redBinLogo: {}
 });
