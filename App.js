@@ -43,20 +43,10 @@ export default function App() {
         <StatusBar style="dark-content" visibility="visible"/>
         <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.items}>
-          {/* <Task name={"Hi"}/>
-          <Task name={"Hi"}/>
-          <Task name={"Hi"}/>
-          <Task name={"Hi"}/>
-          <Task name={"Hi"}/>
-          <Task name={"Hi"}/>
-          <Task name={"Hi"}/>
-          <Task name={"Hi"}/>
-          <Task name={"Hi"}/>
-          <Task name={"Hi"}/> */}
           {
             taskItems.map((item, index) => {
               return (
-                <TouchableOpacity key={index} onPress={() => {
+                <TouchableOpacity key={index} onLongPress={() => {
                   handleCompleteTask(index)
                 }}>
                   
