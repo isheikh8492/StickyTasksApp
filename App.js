@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { Image, Keyboard, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Task from './components/Task';
+import colors from './Colors';
 
 export default function App() {
   const [task, setTask] = useState();
@@ -21,8 +22,24 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <KeyboardAvoidingView
+      behavior={(Platform.OS === "android" || Platform.OS === "ios") ? "padding": "height"}
+      style={styles.writeTaskWrapper}>
+        <TextInput style={styles.input} placeholder={'Write a task'} value={task} onChangeText={text => setTask(text)}/>
+
+        <TouchableOpacity onPress={() => handleAddTask() }>
+          <View style={styles.addWrapper}>
+            <Text style={styles.addText}>+</Text>
+          </View>
+        </TouchableOpacity>
+
+      </KeyboardAvoidingView>
       <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}>Sticky Tasks</Text>
+        <View style={{flexDirection: 'row'}}>
+          <View style={styles.divider} />
+          <Text style={styles.sectionTitle}>Sticky<Text style={{fontWeight: '300', color: colors.orange}}>Tasks</Text></Text>
+          <View style={styles.divider} />
+        </View>
         <StatusBar style="dark-content" visibility="visible"/>
         <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.items}>
@@ -53,7 +70,7 @@ export default function App() {
         </ScrollView>
       </View>
 
-      <KeyboardAvoidingView
+      {/* <KeyboardAvoidingView
       behavior={(Platform.OS === "android" || Platform.OS === "ios") ? "padding": "height"}
       style={styles.writeTaskWrapper}>
         <TextInput style={styles.input} placeholder={'Write a task'} value={task} onChangeText={text => setTask(text)}/>
@@ -64,7 +81,7 @@ export default function App() {
           </View>
         </TouchableOpacity>
 
-      </KeyboardAvoidingView>
+      </KeyboardAvoidingView> */}
     </View>
   )
 };
@@ -73,22 +90,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+    top: -70
   },
   tasksWrapper: {
     paddingTop: 80,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
+    top: 140
   },
   sectionTitle: {
-    fontSize: 28,
+    fontSize: 30,
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
+    paddingHorizontal: 52,
   },
   items: {
-    marginTop: 30
+    marginTop: 30,
   },
   writeTaskWrapper: {
     position: 'absolute',
-    bottom: 60,
+    top: 140,
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-around',
@@ -103,21 +123,28 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     width: 250,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderWidth: 3,
+    borderColor: colors.black,
   },
 addWrapper: {
   width: 60,
   height: 60,
-  backgroundColor: '#fff',
+  backgroundColor: colors.orange,
   borderRadius: 60,
   borderColor: '#C0C0C0',
   borderWidth: 2,
   justifyContent: 'center',
   alignItems: 'center',
+  borderWidth: 3,
+    borderColor: colors.black,
 
 },
-addText: {
-
+divider: {
+  height: 3,
+  backgroundColor: colors.black,
+  flex: 1,
+  alignSelf: 'center'
 },
 redBinLogo: {}
 });

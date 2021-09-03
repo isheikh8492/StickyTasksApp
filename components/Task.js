@@ -1,9 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import colors from '../Colors';
 
 const Task = (props) => {
     return (
         <View style={styles.item}>
+            
             <View style={styles.itemLeft}>
                 <TouchableOpacity style={styles.square}></TouchableOpacity>
                 <Text style={styles.itemText}>{props.name}</Text>
@@ -15,7 +17,7 @@ const Task = (props) => {
 
 const styles = StyleSheet.create({
     item: {
-        backgroundColor: '#fff',
+        borderWidth: 2,
         padding: 15,
         borderRadius: 10,
         flexDirection: 'row',
